@@ -36,7 +36,7 @@ bool SceneManager::init()
 }
 
 void SceneManager::update(float dt) {
-
+	player::update();
 }
 
 void SceneManager::menuCloseCallback(Ref* pSender)
