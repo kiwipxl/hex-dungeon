@@ -27,27 +27,30 @@ bool HelloWorld::init()
 		origin.y + size.height - label->getContentSize().height));
 
 	auto hex_tex = TextureCache::sharedTextureCache()->addImage("hexagon.png");
+	auto wall_tex = TextureCache::sharedTextureCache()->addImage("wall.png");
 
 	auto hex_container = Sprite::create();
 	this->addChild(hex_container, 0);
 	
-	int grid_width = 4;
-	int grid_height = 4;
+	int grid_width = 8;
+	int grid_height = 8;
 	float hex_width = 64.0f;
 	float hex_height = 64.0f;
 	int hex_seperation = 10;
+	float map_width = grid_width * (hex_width + hex_seperation);
+	float map_height = grid_height * (hex_height + hex_seperation) * .8f;
 	for (int y = 0; y < grid_height; ++y) {
 		for (int x = 0; x < grid_width; ++x) {
-			auto hex = Sprite::createWithTexture(hex_tex);
+			auto hex = Sprite::createWithTexture((x % 4 <= 1) ? hex_tex : wall_tex);
 
-			hex->setAnchorPoint(Vec2(.5f, .5f));
+			hex->setAnchorPoint(Vec2(0, 0));
 			hex->setScale(hex_width / hex_tex->getPixelsWide(), hex_height / hex_tex->getPixelsHigh());
-			hex->setPosition(x * (hex_width + hex_seperation), y * (hex_height + hex_seperation));
+			hex->setPosition((x + ((y % 2) * .5f)) * (hex_width + hex_seperation), y * (hex_height + hex_seperation) * .8f);
 
 			hex_container->addChild(hex, 0);
 		}
 	}
-	hex_container->setPosition(size.width / 2, size.height / 2);
+	hex_container->setPosition((size.width - map_width) / 2, map_height / 2);
 
     return true;
 }
