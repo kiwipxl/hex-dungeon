@@ -16,11 +16,12 @@ namespace grid {
 	float map_width;
 	float map_height;
 
+	Node* node_container;
 	GridNode* last_clicked_node;
 
 	void init() {
-		auto hex_container = Sprite::create();
-		root::scene->addChild(hex_container, 0);
+		node_container = Sprite::create();
+		root::scene->addChild(node_container, 0);
 
 		grid_width = root::scene_size.width / HEX_WORLD_WIDTH;
 		grid_height = root::scene_size.height / HEX_WORLD_HEIGHT;
@@ -29,23 +30,23 @@ namespace grid {
 		map_width = grid_width * HEX_WORLD_WIDTH;
 		map_height = grid_height * HEX_WORLD_HEIGHT;
 
-		hex_container->setPosition((root::scene_size.width - map_width) / 2, (root::scene_size.height - map_height) / 2);
+		set_camera_pos(root::scene_size.width / 2.0f, root::scene_size.height / 2.0f);
 
 		for (int y = 0; y < grid_height; ++y) {
 			for (int x = 0; x < grid_width; ++x) {
 				GridNodeType type = GRID_NODE_TYPE_FLOOR;
-				if (x % 4 <= 1) type = GRID_NODE_TYPE_WALL;
+				if (rand() / (float)RAND_MAX >= .8f) type = GRID_NODE_TYPE_WALL;
 
 				auto hex = Sprite::create();
-				hex_container->addChild(hex, 0);
+				node_container->addChild(hex, 0);
 
 				hex->setAnchorPoint(Vec2(0, 0));
 				hex->setPosition((x + ((y % 2) * .5f)) * HEX_WORLD_WIDTH, y * HEX_WORLD_HEIGHT);
 
 				GridNode* node = new GridNode(
 					x, y, 
-					hex->getPositionX() + hex_container->getPositionX(), 
-					hex->getPositionY() + hex_container->getPositionY(), 
+					hex->getPositionX() + node_container->getPositionX(), 
+					hex->getPositionY() + node_container->getPositionY(), 
 					hex, type);
 
 				node->update_texture();
@@ -53,6 +54,11 @@ namespace grid {
 				grid_vec.push_back(node);
 			}
 		}
+	}
+
+	void set_camera_pos(float x, float y) {
+		node_container->setPosition((root::scene_size.width - map_width) / 2 + (root::scene_size.width / 2 - x), 
+									(root::scene_size.height - map_height) / 2 + (root::scene_size.height / 2 - y));
 	}
 
 	Texture2D* get_node_texture(GridNodeType type) {

@@ -60,6 +60,7 @@ namespace grid {
 	extern float map_width;
 	extern float map_height;
 
+	extern cc::Node* node_container;
 	extern GridNode* last_clicked_node;
 
 	extern void init();
@@ -68,6 +69,7 @@ namespace grid {
 	extern cc::Texture2D* get_node_texture(GridNodeType type);
 	extern GridNode* get_node(int x, int y);
 	GridNode* get_neighbour(GridNode* start_node, int offsetx, int offsety);
+	void set_camera_pos(float x, float y);
 }
 
 #endif

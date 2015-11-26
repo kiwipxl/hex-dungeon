@@ -59,5 +59,6 @@ namespace player {
 
 			select_neighbours(current_node);
 		}
+		//grid::set_camera_pos(sprite->getPositionX(), sprite->getPositionY());
 	}
 };
