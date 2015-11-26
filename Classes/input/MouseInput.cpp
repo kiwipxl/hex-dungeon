@@ -62,7 +62,7 @@ namespace input {
 		mouse_listener->onMouseMove = [](Event* e) {
 			EventMouse* em = (EventMouse*)e;
 			mouse.pos.x = em->getCursorX();
-			mouse.pos.y = root::scene_size.height + em->getCursorY();
+			mouse.pos.y = em->getCursorY();
 		};
 
 		mouse_listener->onMouseScroll = [](Event* e) {

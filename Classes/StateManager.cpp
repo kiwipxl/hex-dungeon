@@ -56,6 +56,10 @@ namespace root {
 
 		scene_size = Director::getInstance()->getVisibleSize();
 
+		input::init_keyboard();
+		input::init_mouse();
+		utility::init_logger();
+
 		//initial state when game is initialised
 		create_state(STATE_GAME);
 	}
@@ -75,6 +79,7 @@ namespace root {
 		switch (state) {
 		case STATE_GAME:
 			player::update();
+			grid::update();
 			break;
 		}
 
