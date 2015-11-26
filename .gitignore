@@ -1,0 +1,13 @@
+proj.win10
+proj.win8.1-universal
+proj.linux
+proj.ios_mac
+proj.android-studio
+
+cocos2d
+
+proj.win32/Debug.win32
+
+proj.android/bin
+proj.android/obj
+proj.android/libs
