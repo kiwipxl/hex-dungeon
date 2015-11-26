@@ -10,15 +10,18 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{2ed63ee9-29d4-45f7-a456-185a3efb214c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility">
+      <UniqueIdentifier>{323471ea-e926-4c11-8cb7-bc7990668c90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SceneManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Grid.cpp">
@@ -30,15 +33,27 @@
     <ClCompile Include="..\Classes\Assets.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\input\KeyboardInput.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\input\MouseInput.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\StateManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utility\Logger.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SceneInit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SceneManager.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Grid.h">
@@ -48,6 +63,21 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Assets.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\input\KeyboardInput.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\input\MouseInput.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StateManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utility\Logger.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SceneInit.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

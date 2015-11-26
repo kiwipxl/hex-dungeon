@@ -1,7 +1,7 @@
 #include "Grid.h"
 
-#include "SceneManager.h"
 #include "Assets.h"
+#include "StateManager.h"
 
 namespace grid {
 
@@ -16,16 +16,17 @@ namespace grid {
 
 	void init() {
 		auto hex_container = Sprite::create();
-		SceneManager::scene->addChild(hex_container, 0);
+		root::scene->addChild(hex_container, 0);
 
-		grid_width = SceneManager::scene_size.width / HEX_WORLD_WIDTH;
-		grid_height = SceneManager::scene_size.height / HEX_WORLD_HEIGHT;
+		grid_width = root::scene_size.width / HEX_WORLD_WIDTH;
+		grid_height = root::scene_size.height / HEX_WORLD_HEIGHT;
 		--grid_width;
 		--grid_height;
+		grid_height = 2;
 		map_width = grid_width * HEX_WORLD_WIDTH;
 		map_height = grid_height * HEX_WORLD_HEIGHT;
 
-		hex_container->setPosition((SceneManager::scene_size.width - map_width) / 2, (SceneManager::scene_size.height - map_height) / 2);
+		hex_container->setPosition((root::scene_size.width - map_width) / 2, (root::scene_size.height - map_height) / 2);
 
 		for (int y = 0; y < grid_height; ++y) {
 			for (int x = 0; x < grid_width; ++x) {
@@ -64,6 +65,12 @@ namespace grid {
 		int index = (y * grid_width) + x;
 		if (index < 0 || index >= grid_width * grid_height) return NULL;
 		return grid_vec[index];
+	}
+
+	void update() {
+		for (GridNode* node : grid_vec) {
+
+		}
 	}
 }
 

@@ -1,8 +1,8 @@
 #include "Player.h"
 
-#include "SceneManager.h"
-#include "Grid.h"
 #include "Assets.h"
+#include "Grid.h"
+#include "StateManager.h"
 
 namespace player {
 
@@ -23,7 +23,7 @@ namespace player {
 	void init() {
 		sprite = Sprite::createWithTexture(assets::tex_char_warrior);
 		sprite->setAnchorPoint(Vec2(0, 0));
-		SceneManager::scene->addChild(sprite);
+		root::scene->addChild(sprite);
 		
 		current_node = grid::get_node(grid::grid_width / 2, grid::grid_height / 2);
 		walk_to(current_node);

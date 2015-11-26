@@ -147,16 +147,24 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Assets.cpp" />
     <ClCompile Include="..\Classes\Grid.cpp" />
+    <ClCompile Include="..\Classes\input\KeyboardInput.cpp" />
+    <ClCompile Include="..\Classes\input\MouseInput.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
-    <ClCompile Include="..\Classes\SceneManager.cpp" />
+    <ClCompile Include="..\Classes\SceneInit.cpp" />
+    <ClCompile Include="..\Classes\StateManager.cpp" />
+    <ClCompile Include="..\Classes\utility\Logger.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Assets.h" />
     <ClInclude Include="..\Classes\Grid.h" />
+    <ClInclude Include="..\Classes\input\KeyboardInput.h" />
+    <ClInclude Include="..\Classes\input\MouseInput.h" />
     <ClInclude Include="..\Classes\Player.h" />
-    <ClInclude Include="..\Classes\SceneManager.h" />
+    <ClInclude Include="..\Classes\SceneInit.h" />
+    <ClInclude Include="..\Classes\StateManager.h" />
+    <ClInclude Include="..\Classes\utility\Logger.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
