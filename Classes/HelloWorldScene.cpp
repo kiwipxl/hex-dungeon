@@ -12,63 +12,10 @@ Scene* HelloWorld::createScene()
     return scene;
 }
 
-enum GridNodeType {
-
-	GRID_NODE_TYPE_NONE,
-	GRID_NODE_TYPE_FLOOR,
-	GRID_NODE_TYPE_WALKABLE_FLOOR,
-	GRID_NODE_TYPE_WALL
-};
-
-
-float HEX_WIDTH = 64.0f;
-float HEX_HEIGHT = 64.0f;
-int HEX_OFFSET = 10;
-float HEX_WORLD_WIDTH = HEX_WIDTH + HEX_OFFSET;
-float HEX_WORLD_HEIGHT = (HEX_HEIGHT + HEX_OFFSET) * .8f;
-
 Texture2D* tex_hex_floor;
 Texture2D* tex_hex_wall;
 Texture2D* tex_hex_walkable_floor;
 Texture2D* tex_char_warrior;
-
-Texture2D* get_node_texture(GridNodeType type) {
-	switch (type) {
-	case GRID_NODE_TYPE_FLOOR:				return tex_hex_floor;
-	case GRID_NODE_TYPE_WALKABLE_FLOOR:		return tex_hex_walkable_floor;
-	case GRID_NODE_TYPE_WALL:				return tex_hex_wall;
-	}
-	return NULL;
-}
-
-struct GridNode {
-
-	int grid_x;
-	int grid_y;
-	float world_x;
-	float world_y;
-
-	Sprite* sprite;
-	GridNodeType type = GRID_NODE_TYPE_NONE;
-
-	void update_texture() {
-		auto tex = get_node_texture(type);
-		sprite->setTexture(tex);
-		sprite->setScale(HEX_WIDTH / tex->getPixelsWide(), HEX_HEIGHT / tex->getPixelsHigh());
-	}
-};
-
-std::vector<GridNode*> grid;
-int grid_width;
-int grid_height;
-float map_width;
-float map_height;
-
-GridNode* get_node(int x, int y) {
-	int index = (y * grid_width) + x;
-	if (index < 0 || index >= grid_width * grid_height) return NULL;
-	return grid[index];
-}
 
 void move_to(Sprite* sprite, GridNode* node) {
 	sprite->setPosition(node->world_x, node->world_y + (HEX_HEIGHT * .35f));
@@ -127,8 +74,16 @@ bool HelloWorld::init()
 
 	auto char_warrior = Sprite::createWithTexture(tex_char_warrior);
 	char_warrior->setAnchorPoint(Vec2(0, 0));
-	move_to(char_warrior, get_node(grid_width / 2, grid_height / 2));
+	GridNode* player_node = get_node(grid_width / 2, grid_height / 2);
+	move_to(char_warrior, player_node);
 	this->addChild(char_warrior);
+
+	int neighbours[] { 0, -1, 1, -1, -1, 0, 1, 0, 0, 1, 1, 1 };
+
+	for (int n = 0; n < sizeof(neighbours); n += 2) {
+		GridNode* node = get_node(player_node->grid_x + neighbours[n], player_node->grid_y + neighbours[n + 1]);
+		if (node) node->set_type(GRID_NODE_TYPE_WALKABLE_FLOOR);
+	}
 
 	this->scheduleUpdate();
 
