@@ -5,6 +5,7 @@
 #include "Assets.h"
 #include "StateManager.h"
 #include "entities/Enemy.h"
+#include "utility/Logger.h"
 
 namespace grid {
 
@@ -21,7 +22,7 @@ namespace grid {
 	GridNode* last_clicked_node;
 
 	void init() {
-		node_container = Sprite::create();
+		node_container = Node::create();
 		root::scene->addChild(node_container, 0);
 
 		grid_width = root::scene_size.width / HEX_WORLD_WIDTH;
@@ -83,8 +84,29 @@ namespace grid {
 		return grid::get_node(gx - ((gy % 2) * needs_xoffset), gy);
 	}
 
-	void update() {
+	#define IS_BIT(num, lsh) ((num & (1 << (lsh))) != 0)
 
+	Color3B interp_colours(float i) {
+		int i7 = (int)(i * 7);
+		float f7 = fmod(i * 7, 1.0f);
+
+		return Color3B(
+			(IS_BIT(0x63, i7) + ((IS_BIT(0x63, i7 + 1) - IS_BIT(0x63, i7)) * f7)) * 255,
+			(IS_BIT(0x38, i7) + ((IS_BIT(0x38, i7 + 1) - IS_BIT(0x38, i7)) * f7)) * 255,
+			(IS_BIT(0x0E, i7) + ((IS_BIT(0x0E, i7 + 1) - IS_BIT(0x0E, i7)) * f7)) * 255);
+	}
+
+	float timer = 0;
+	
+	void update() {
+		timer += root::delta_time / 4.0f;
+		if (timer >= 1) timer -= 1.0f;
+
+		Color3B colour = interp_colours(timer);
+
+		for (Node* n : node_container->getChildren()) {
+			n->setColor(colour);
+		}
 	}
 }
 

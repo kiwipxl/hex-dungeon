@@ -71,8 +71,14 @@ namespace player {
 	}
 
 	void update() {
-		camera->setPositionX(camera->getPositionX() + (sprite->getPositionX() - camera->getPositionX()) * .075f);
-		camera->setPositionY(camera->getPositionY() + (sprite->getPositionY() - camera->getPositionY()) * .075f);
+		float camx = camera->getPositionX();
+		float camy = camera->getPositionY();
+		if (abs(sprite->getPositionX() - camx) <= 4.0f) camx = sprite->getPositionX();
+		if (abs(sprite->getPositionY() - camy) <= 4.0f) camy = sprite->getPositionY();
+		camx += (sprite->getPositionX() - camx) * .1f;
+		camy += (sprite->getPositionY() - camy) * .1f;
+		camera->setPositionX(camx);
+		camera->setPositionY(camy);
 
 		sprite->setPositionX(sprite->getPositionX() + (dest.x - sprite->getPositionX()) * .25f);
 		sprite->setPositionY(sprite->getPositionY() + (dest.y - sprite->getPositionY()) * .25f);

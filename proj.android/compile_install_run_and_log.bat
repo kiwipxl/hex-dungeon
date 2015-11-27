@@ -1,4 +1,9 @@
+echo running android build...
 call cocos run -p android
+timeout /t 2
 call "D:\android\apache-ant-1.9.6\bin\ant" clean debug -f D:\Development\C++\HexDungeon\proj.android\build.xml -Dsdk.dir="D:\android\android-sdk"
+timeout /t 2
+echo installing apk...
 adb install -r "D:\Development\C++\HexDungeon\proj.android\bin\HexDungeon-debug.apk"
+echo running and logging...
 call run_and_log.bat
