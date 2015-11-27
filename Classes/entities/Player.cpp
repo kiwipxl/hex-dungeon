@@ -65,14 +65,14 @@ namespace player {
 		stats_box->setAnchorPoint(Vec2(0, 0));
 		root::scene->addChild(stats_box);
 
-		hp_stat_text = Label::create("0", "fonts/Marker Felt.ttf", 12);
+		hp_stat_text = Label::create("4", "fonts/Marker Felt.ttf", 12);
 		hp_stat_text->setAnchorPoint(Vec2(0, 0));
-		hp_stat_text->setPosition(24, 2);
+		hp_stat_text->setPosition(20, 2);
 		stats_box->addChild(hp_stat_text);
 
-		dmg_stat_text = Label::create("0", "fonts/Marker Felt.ttf", 12);
+		dmg_stat_text = Label::create("8", "fonts/Marker Felt.ttf", 12);
 		dmg_stat_text->setAnchorPoint(Vec2(0, 0));
-		dmg_stat_text->setPosition(58, 2);
+		dmg_stat_text->setPosition(57, 2);
 		stats_box->addChild(dmg_stat_text);
 
 		current_node = grid::get_node(grid::grid_width / 2, grid::grid_height / 2);
@@ -81,7 +81,7 @@ namespace player {
 		Camera::getDefaultCamera()->setVisible(false);
 
 		camera = Camera::createPerspective(60, (float)root::scene_size.width / root::scene_size.height, 1, 1000.0f);
-		camera->setPositionZ(Director::getInstance()->getZEye());
+		camera->setPositionZ(Director::getInstance()->getZEye() - 200);
 
 		camera->setCameraFlag(CameraFlag::DEFAULT);
 		camera->setCameraMask((unsigned short)CameraFlag::DEFAULT);
