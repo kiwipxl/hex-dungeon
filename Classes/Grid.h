@@ -50,11 +50,10 @@ private:
 
 namespace grid {
 
-	const float HEX_WIDTH = 80.0f;
-	const float HEX_HEIGHT = 80.0f;
+	const float HEX_SIZE = 80.0f;
 	const int HEX_OFFSET = 10;
-	const float HEX_WORLD_WIDTH = HEX_WIDTH + HEX_OFFSET;
-	const float HEX_WORLD_HEIGHT = (HEX_HEIGHT + HEX_OFFSET) * .8f;
+	const float HEX_WORLD_WIDTH = HEX_SIZE + HEX_OFFSET;
+	const float HEX_WORLD_HEIGHT = (HEX_SIZE + HEX_OFFSET) * .8f;
 
 	extern std::vector<GridNode*> grid_vec;
 	extern int grid_width;

@@ -112,5 +112,5 @@ void GridNode::update_texture() {
 	auto tex = get_node_texture(type);
 	sprite->setTexture(tex);
 	sprite->setTextureRect(Rect(0, 0, sprite->getTexture()->getPixelsWide(), sprite->getTexture()->getPixelsHigh()));
-	sprite->setScale(HEX_WIDTH / tex->getPixelsWide(), HEX_HEIGHT / tex->getPixelsHigh());
+	sprite->setScale(HEX_SIZE / tex->getPixelsWide(), HEX_SIZE / tex->getPixelsHigh());
 }

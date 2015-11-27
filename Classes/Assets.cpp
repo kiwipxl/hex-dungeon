@@ -13,6 +13,8 @@ namespace assets {
 	Texture2D* tex_char_warrior;
 	Texture2D* tex_char_skeleton;
 
+	Texture2D* tex_char_stats;
+
 	void init() {
 		tex_hex_floor = TextureCache::getInstance()->addImage("hex_floor.png");
 		tex_hex_walkable_floor = TextureCache::getInstance()->addImage("hex_walkable_floor.png");
@@ -22,5 +24,7 @@ namespace assets {
 
 		tex_char_warrior = TextureCache::getInstance()->addImage("char_warrior.png");
 		tex_char_skeleton = TextureCache::getInstance()->addImage("char_skeleton.png");
+
+		tex_char_stats = TextureCache::getInstance()->addImage("char_stats.png");
 	}
 };

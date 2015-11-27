@@ -17,6 +17,8 @@ namespace assets {
 	extern cc::Texture2D* tex_char_warrior;
 	extern cc::Texture2D* tex_char_skeleton;
 
+	extern cc::Texture2D* tex_char_stats;
+
 	extern void init();
 };
 

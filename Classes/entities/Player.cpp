@@ -2,6 +2,7 @@
 
 #include <2d/CCCamera.h>
 #include <base/CCDirector.h>
+#include <2d/CCLabel.h>
 
 #include "Assets.h"
 #include "Grid.h"
@@ -18,6 +19,9 @@ namespace player {
 	Vec2 dest;
 
 	Camera* camera;
+	Sprite* stats_box;
+	Label* dmg_stat_text;
+	Label* hp_stat_text;
 
 	std::vector<GridNode*> neighbours;
 	int hex_neighbours[] { 0, -1, 1, -1, -1, 0, 1, 0, 0, 1, 1, 1 };
@@ -43,8 +47,8 @@ namespace player {
 	}
 
 	void walk_to(GridNode* node) {
-		dest.x = node->get_world_x() + (grid::HEX_WIDTH - sprite->getContentSize().width) / 2;
-		dest.y = node->get_world_y() + (grid::HEX_HEIGHT * .35f);
+		dest.x = node->get_world_x() + (grid::HEX_SIZE - sprite->getContentSize().width) / 2;
+		dest.y = node->get_world_y() + (grid::HEX_SIZE * .35f);
 
 		select_neighbours(current_node);
 	}
@@ -56,7 +60,21 @@ namespace player {
 		sprite = Sprite::createWithTexture(assets::tex_char_warrior);
 		sprite->setAnchorPoint(Vec2(0, 0));
 		root::scene->addChild(sprite);
-		
+
+		stats_box = Sprite::createWithTexture(assets::tex_char_stats);
+		stats_box->setAnchorPoint(Vec2(0, 0));
+		root::scene->addChild(stats_box);
+
+		hp_stat_text = Label::create("0", "fonts/Marker Felt.ttf", 12);
+		hp_stat_text->setAnchorPoint(Vec2(0, 0));
+		hp_stat_text->setPosition(24, 2);
+		stats_box->addChild(hp_stat_text);
+
+		dmg_stat_text = Label::create("0", "fonts/Marker Felt.ttf", 12);
+		dmg_stat_text->setAnchorPoint(Vec2(0, 0));
+		dmg_stat_text->setPosition(58, 2);
+		stats_box->addChild(dmg_stat_text);
+
 		current_node = grid::get_node(grid::grid_width / 2, grid::grid_height / 2);
 		walk_to(current_node);
 
@@ -71,6 +89,7 @@ namespace player {
 	}
 
 	void update() {
+
 		float camx = camera->getPositionX();
 		float camy = camera->getPositionY();
 		if (abs(sprite->getPositionX() - camx) <= 4.0f) camx = sprite->getPositionX();
@@ -83,6 +102,8 @@ namespace player {
 		sprite->setPositionX(sprite->getPositionX() + (dest.x - sprite->getPositionX()) * .25f);
 		sprite->setPositionY(sprite->getPositionY() + (dest.y - sprite->getPositionY()) * .25f);
 
+		stats_box->setPosition(sprite->getPositionX(), sprite->getPositionY() + 64.0f);
+
 		if (input::get_mouse_button_pressed(0)) {
 			Vec2 mpos = input::get_mouse_pos();
 			mpos.x += camera->getPositionX();
@@ -91,13 +112,10 @@ namespace player {
 			mpos.y -= root::scene_size.height / 2;
 
 			for (GridNode* node : neighbours) {
-				Size size = node->get_sprite()->getContentSize();
-				size.width *= node->get_sprite()->getScaleX();
-				size.height *= node->get_sprite()->getScaleY();
+				float dist = sqrt(pow((node->get_world_x() + (grid::HEX_WORLD_WIDTH * .5f)) - mpos.x, 2) + 
+								  pow((node->get_world_y() + (grid::HEX_WORLD_HEIGHT * .5f)) - mpos.y, 2));
 
-				if (mpos.x >= node->get_world_x() && mpos.x <= node->get_world_x() + size.width &&
-					mpos.y >= node->get_world_y() && mpos.y <= node->get_world_y() + size.height) {
-
+				if (dist <= grid::HEX_WORLD_WIDTH * .7f) {
 					deselect_neighbours();
 
 					current_node = node;

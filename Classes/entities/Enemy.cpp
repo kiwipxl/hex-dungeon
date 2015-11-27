@@ -33,8 +33,8 @@ namespace enemy {
 	void Enemy::walk_to(GridNode* node) {
 		current_node->set_type(GRID_NODE_TYPE_FLOOR);
 
-		dest.x = node->get_world_x() + (grid::HEX_WIDTH - sprite->getContentSize().width) / 2;
-		dest.y = node->get_world_y() + (grid::HEX_HEIGHT * .35f);
+		dest.x = node->get_world_x() + (grid::HEX_SIZE - sprite->getContentSize().width) / 2;
+		dest.y = node->get_world_y() + (grid::HEX_SIZE * .35f);
 		
 		node->set_type(GRID_NODE_TYPE_ENEMY_FLOOR);
 	}

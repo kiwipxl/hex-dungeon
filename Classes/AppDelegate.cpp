@@ -3,10 +3,10 @@
 
 USING_NS_CC;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(640, 960);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(640, 960);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(960, 1440);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(1440, 2160);
+static cocos2d::Size designResolutionSize = cocos2d::Size(600, 1024);
+static cocos2d::Size smallResolutionSize = cocos2d::Size(600, 1024);
+static cocos2d::Size mediumResolutionSize = cocos2d::Size(900, 1536);
+static cocos2d::Size largeResolutionSize = cocos2d::Size(1350, 2048);
 
 AppDelegate::AppDelegate() {
 
