@@ -12,7 +12,8 @@ enum GridNodeType {
 
 	GRID_NODE_TYPE_NONE,
 	GRID_NODE_TYPE_FLOOR,
-	GRID_NODE_TYPE_WALKABLE_FLOOR,
+	GRID_NODE_TYPE_WALKABLE_FLOOR, 
+	GRID_NODE_TYPE_PLAYER_FLOOR, 
 	GRID_NODE_TYPE_WALL
 };
 
@@ -68,7 +69,6 @@ namespace grid {
 	extern cc::Texture2D* get_node_texture(GridNodeType type);
 	extern GridNode* get_node(int x, int y);
 	GridNode* get_neighbour(GridNode* start_node, int offsetx, int offsety);
-	void set_camera_pos(float x, float y);
 }
 
 #endif

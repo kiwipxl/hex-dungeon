@@ -19,6 +19,9 @@ namespace root {
 		void menuCloseCallback(cocos2d::Ref* pSender);
 
 		CREATE_FUNC(SceneInit);
+
+	private:
+		bool inited_root = false;
 	};
 };
 

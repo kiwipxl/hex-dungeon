@@ -11,6 +11,8 @@ namespace assets {
 	extern cc::Texture2D* tex_hex_floor;
 	extern cc::Texture2D* tex_hex_wall;
 	extern cc::Texture2D* tex_hex_walkable_floor;
+	extern cc::Texture2D* tex_hex_player_floor;
+
 	extern cc::Texture2D* tex_char_warrior;
 
 	extern void init();

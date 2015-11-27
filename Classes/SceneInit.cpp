@@ -21,13 +21,17 @@ namespace root {
 		if (!LayerColor::initWithColor(Color4B(12, 12, 12, 255))) return false;
 
 		this->scheduleUpdate();
-		
-		root::init_root(this);
 
 		return true;
 	}
 
 	void SceneInit::update(float dt) {
+		if (!inited_root) {
+			root::init_root(this);
+
+			inited_root = true;
+		}
+
 		root::update_state(dt);
 	}
 

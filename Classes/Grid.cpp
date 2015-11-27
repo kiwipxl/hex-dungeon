@@ -1,6 +1,6 @@
 #include "Grid.h"
 
-#include <stdlib.h>
+#include <2d/CCCamera.h>
 
 #include "Assets.h"
 #include "StateManager.h"
@@ -30,8 +30,6 @@ namespace grid {
 		map_width = grid_width * HEX_WORLD_WIDTH;
 		map_height = grid_height * HEX_WORLD_HEIGHT;
 
-		set_camera_pos(root::scene_size.width / 2.0f, root::scene_size.height / 2.0f);
-
 		for (int y = 0; y < grid_height; ++y) {
 			for (int x = 0; x < grid_width; ++x) {
 				GridNodeType type = GRID_NODE_TYPE_FLOOR;
@@ -45,8 +43,8 @@ namespace grid {
 
 				GridNode* node = new GridNode(
 					x, y, 
-					hex->getPositionX() + node_container->getPositionX(), 
-					hex->getPositionY() + node_container->getPositionY(), 
+					hex->getPositionX(), 
+					hex->getPositionY(), 
 					hex, type);
 
 				node->update_texture();
@@ -56,15 +54,11 @@ namespace grid {
 		}
 	}
 
-	void set_camera_pos(float x, float y) {
-		node_container->setPosition((root::scene_size.width - map_width) / 2 + (root::scene_size.width / 2 - x), 
-									(root::scene_size.height - map_height) / 2 + (root::scene_size.height / 2 - y));
-	}
-
 	Texture2D* get_node_texture(GridNodeType type) {
 		switch (type) {
 		case GRID_NODE_TYPE_FLOOR:				return assets::tex_hex_floor;
 		case GRID_NODE_TYPE_WALKABLE_FLOOR:		return assets::tex_hex_walkable_floor;
+		case GRID_NODE_TYPE_PLAYER_FLOOR:		return assets::tex_hex_player_floor;
 		case GRID_NODE_TYPE_WALL:				return assets::tex_hex_wall;
 		}
 		return NULL;
