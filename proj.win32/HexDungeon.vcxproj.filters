@@ -89,6 +89,9 @@
     <ClInclude Include="..\Classes\entities\Player.h">
       <Filter>src\entities</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\utility\Misc.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

@@ -6,6 +6,7 @@
 #include "StateManager.h"
 #include "entities/Enemy.h"
 #include "utility/Logger.h"
+#include "utility/Misc.h"
 
 namespace grid {
 
@@ -84,25 +85,11 @@ namespace grid {
 		return grid::get_node(gx - ((gy % 2) * needs_xoffset), gy);
 	}
 
-	#define IS_BIT(num, lsh) ((num & (1 << (lsh))) != 0)
-
-	Color3B interp_colours(float i) {
-		int i7 = (int)(i * 7);
-		float f7 = fmod(i * 7, 1.0f);
-
-		return Color3B(
-			(IS_BIT(0x63, i7) + ((IS_BIT(0x63, i7 + 1) - IS_BIT(0x63, i7)) * f7)) * 255,
-			(IS_BIT(0x38, i7) + ((IS_BIT(0x38, i7 + 1) - IS_BIT(0x38, i7)) * f7)) * 255,
-			(IS_BIT(0x0E, i7) + ((IS_BIT(0x0E, i7 + 1) - IS_BIT(0x0E, i7)) * f7)) * 255);
-	}
-
-	float timer = 0;
-	
 	void update() {
-		timer += root::delta_time / 4.0f;
-		if (timer >= 1) timer -= 1.0f;
-
-		Color3B colour = interp_colours(timer);
+		Color3B colour = utility::interp_hue(fmod(root::time_since_startup / 20.0f, 1.0f));
+		colour.r = MIN(colour.r + 140, 255);
+		colour.g = MIN(colour.g + 140, 255);
+		colour.b = MIN(colour.b + 140, 255);
 
 		for (Node* n : node_container->getChildren()) {
 			n->setColor(colour);
