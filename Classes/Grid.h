@@ -48,8 +48,8 @@ private:
 
 namespace grid {
 
-	const float HEX_WIDTH = 64.0f;
-	const float HEX_HEIGHT = 64.0f;
+	const float HEX_WIDTH = 80.0f;
+	const float HEX_HEIGHT = 80.0f;
 	const int HEX_OFFSET = 10;
 	const float HEX_WORLD_WIDTH = HEX_WIDTH + HEX_OFFSET;
 	const float HEX_WORLD_HEIGHT = (HEX_HEIGHT + HEX_OFFSET) * .8f;
@@ -61,7 +61,6 @@ namespace grid {
 	extern float map_height;
 
 	extern cc::Node* node_container;
-	extern GridNode* last_clicked_node;
 
 	extern void init();
 	extern void update();

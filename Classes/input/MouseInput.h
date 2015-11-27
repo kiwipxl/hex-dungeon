@@ -1,7 +1,7 @@
 #ifndef _MOUSE_INPUT_H_
 #define _MOUSE_INPUT_H_
 
-#include <base/CCEventMouse.h>
+#include <2d/CCNode.h>
 
 namespace cc = cocos2d;
 

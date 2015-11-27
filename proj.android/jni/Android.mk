@@ -13,7 +13,15 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 ROOT_SRC_FILES := $(wildcard $(LOCAL_PATH)/../../Classes/*.cpp)
 ROOT_SRC_FILES := $(ROOT_SRC_FILES:$(LOCAL_PATH)/%=%)
 
+INPUT_SRC_FILES := $(wildcard $(LOCAL_PATH)/../../Classes/input/*.cpp)
+INPUT_SRC_FILES := $(INPUT_SRC_FILES:$(LOCAL_PATH)/%=%)
+
+UTILITY_SRC_FILES := $(wildcard $(LOCAL_PATH)/../../Classes/utility/*.cpp)
+UTILITY_SRC_FILES := $(UTILITY_SRC_FILES:$(LOCAL_PATH)/%=%)
+
 LOCAL_SRC_FILES := $(ROOT_SRC_FILES)
+LOCAL_SRC_FILES += $(INPUT_SRC_FILES)
+LOCAL_SRC_FILES += $(UTILITY_SRC_FILES)
 LOCAL_SRC_FILES += $(LOCAL_PATH)/../hellocpp/main.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes

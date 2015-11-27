@@ -3,17 +3,22 @@
 #include <base/CCEventDispatcher.h>
 #include <base/CCEventMouse.h>
 #include <base/CCEventListenerMouse.h>
+#include <base/CCEventTouch.h>
+#include <base/CCEventListenerTouch.h>
+#include <base/CCEventListener.h>
+#include "cocos2d.h"
 
 #include "utility/Logger.h"
 
 #include "StateManager.h"
 
-namespace input {
+using namespace cocos2d;
 
-	using namespace cocos2d;
+namespace input {
 
 	//private
 	EventListenerMouse* mouse_listener;
+	EventListenerTouchOneByOne* touch_listener;
 
 	struct MouseButton {
 
@@ -46,32 +51,53 @@ namespace input {
 
 	void init_mouse() {
 		mouse_listener = EventListenerMouse::create();
+		touch_listener = EventListenerTouchOneByOne::create();
 
-		mouse_listener->onMouseDown = [](Event* e) {
-			EventMouse* em = (EventMouse*)e;
+		mouse_listener->onMouseDown = [](EventMouse* em) {
 			get_mouse_button(em->getMouseButton()).down = true;
 			get_mouse_button(em->getMouseButton()).pressed = true;
 		};
 
-		mouse_listener->onMouseUp = [](Event* e) {
-			EventMouse* em = (EventMouse*)e;
+		mouse_listener->onMouseUp = [](EventMouse* em) {
 			get_mouse_button(em->getMouseButton()).down = false;
 			get_mouse_button(em->getMouseButton()).pressed = false;
 		};
 
-		mouse_listener->onMouseMove = [](Event* e) {
-			EventMouse* em = (EventMouse*)e;
+		mouse_listener->onMouseMove = [](EventMouse* em) {
 			mouse.pos.x = em->getCursorX();
 			mouse.pos.y = em->getCursorY();
 		};
 
-		mouse_listener->onMouseScroll = [](Event* e) {
-			EventMouse* em = (EventMouse*)e;
+		mouse_listener->onMouseScroll = [](EventMouse* em) {
 			mouse.scroll.x = em->getScrollX();
 			mouse.scroll.y = em->getScrollY();
 		};
 
-		root::scene->getEventDispatcher()->addEventListenerWithFixedPriority(mouse_listener, 10);
+		touch_listener->onTouchBegan = [](Touch* touch, Event* e) {
+			get_mouse_button(0).down = true;
+			get_mouse_button(0).pressed = true;
+
+			mouse.pos.x = touch->getLocation().x;
+			mouse.pos.y = touch->getLocation().y;
+
+			return true;
+		};
+
+		touch_listener->onTouchEnded = [](Touch* touch, Event* e) {
+			get_mouse_button(0).down = false;
+			get_mouse_button(0).pressed = false;
+
+			mouse.pos.x = touch->getLocation().x;
+			mouse.pos.y = touch->getLocation().y;
+		};
+
+		touch_listener->onTouchMoved = [](Touch* touch, Event* e) {
+			mouse.pos.x = touch->getLocation().x;
+			mouse.pos.y = touch->getLocation().y;
+		};
+
+		root::scene->getEventDispatcher()->addEventListenerWithFixedPriority(mouse_listener, 1);
+		root::scene->getEventDispatcher()->addEventListenerWithFixedPriority(touch_listener, 1);
 	}
 
 	bool get_mouse_button_pressed(int mouse_button) {

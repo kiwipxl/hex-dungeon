@@ -1,9 +1,9 @@
 #include "Grid.h"
 
+#include <stdlib.h>
+
 #include "Assets.h"
 #include "StateManager.h"
-#include "input/MouseInput.h"
-#include "utility/Logger.h"
 
 namespace grid {
 
@@ -35,7 +35,7 @@ namespace grid {
 		for (int y = 0; y < grid_height; ++y) {
 			for (int x = 0; x < grid_width; ++x) {
 				GridNodeType type = GRID_NODE_TYPE_FLOOR;
-				if (rand() / (float)RAND_MAX >= .8f) type = GRID_NODE_TYPE_WALL;
+				if (std::rand() / (float)RAND_MAX >= .8f) type = GRID_NODE_TYPE_WALL;
 
 				auto hex = Sprite::create();
 				node_container->addChild(hex, 0);
@@ -86,21 +86,7 @@ namespace grid {
 	}
 
 	void update() {
-		if (input::get_mouse_button_pressed(0)) {
-			Vec2 mpos = input::get_mouse_pos();
 
-			for (GridNode* node : grid_vec) {
-				Size size = node->get_sprite()->getContentSize();
-				size.width *= node->get_sprite()->getScaleX();
-				size.height *= node->get_sprite()->getScaleY();
-
-				if (mpos.x >= node->get_world_x() && mpos.x <= node->get_world_x() + size.width &&
-					mpos.y >= node->get_world_y() && mpos.y <= node->get_world_y() + size.height) {
-					last_clicked_node = node;
-					break;
-				}
-			}
-		}
 	}
 }
 
