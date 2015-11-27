@@ -4,6 +4,7 @@
 
 #include "Assets.h"
 #include "StateManager.h"
+#include "entities/Enemy.h"
 
 namespace grid {
 
@@ -52,6 +53,8 @@ namespace grid {
 				grid_vec.push_back(node);
 			}
 		}
+
+		enemy::Enemy* enemy = enemy::create_enemy();
 	}
 
 	Texture2D* get_node_texture(GridNodeType type) {
@@ -60,6 +63,7 @@ namespace grid {
 		case GRID_NODE_TYPE_WALKABLE_FLOOR:		return assets::tex_hex_walkable_floor;
 		case GRID_NODE_TYPE_PLAYER_FLOOR:		return assets::tex_hex_player_floor;
 		case GRID_NODE_TYPE_WALL:				return assets::tex_hex_wall;
+		case GRID_NODE_TYPE_ENEMY_FLOOR:		return assets::tex_hex_enemy_floor;
 		}
 		return NULL;
 	}

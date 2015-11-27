@@ -16,6 +16,9 @@
     <Filter Include="src\utility">
       <UniqueIdentifier>{323471ea-e926-4c11-8cb7-bc7990668c90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{2ef712bb-c30e-48f3-a26b-2da632fdc669}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -25,9 +28,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Grid.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Player.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Assets.cpp">
@@ -48,6 +48,12 @@
     <ClCompile Include="..\Classes\SceneInit.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\entities\Enemy.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\entities\Player.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -57,9 +63,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Grid.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Player.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Assets.h">
@@ -79,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SceneInit.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\entities\Enemy.h">
+      <Filter>src\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\entities\Player.h">
+      <Filter>src\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

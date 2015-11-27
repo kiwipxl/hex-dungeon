@@ -3,7 +3,8 @@
 #include <base/CCDirector.h>
 
 #include "Assets.h"
-#include "Player.h"
+#include "entities/Enemy.h"
+#include "entities/Player.h"
 #include "Grid.h"
 
 #include "input/KeyboardInput.h"
@@ -80,6 +81,8 @@ namespace root {
 		case STATE_GAME:
 			player::update();
 			grid::update();
+			enemy::update();
+
 			break;
 		}
 
