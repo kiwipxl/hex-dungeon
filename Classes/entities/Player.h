@@ -4,7 +4,7 @@
 #include <2d/CCSprite.h>
 
 #include "Declares.h"
-#include "utility/ColourFlash.h"
+#include "utility/Colour.h"
 
 namespace cc = cocos2d;
 

@@ -7,7 +7,8 @@ namespace cc = cocos2d;
 
 namespace utility {
 
-	void start(float duration, float intensity);
+	void shake_screen(float duration, float intensity);
+	void update_misc();
 };
 
 #endif

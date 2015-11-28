@@ -1,11 +1,17 @@
 #include "Enemy.h"
 
 #include "Assets.h"
+
 #include "gui/StatBox.h"
+
 #include "input/MouseInput.h"
+
 #include "map/Grid.h"
+
 #include "StateManager.h"
+
 #include "utility/Logger.h"
+#include "utility/Misc.h"
 
 using namespace cocos2d;
 
@@ -54,6 +60,7 @@ namespace entities {
 		stat_box->set_hp(stat_box->hp);
 
 		colour_flash.start(sprite, 1, .5f, 2, 0, 0);
+		utility::shake_screen(.2f, 7.0f);
 	}
 
 	/* ================================================================= */

@@ -66,7 +66,10 @@
     <ClCompile Include="..\Classes\map\TurnControl.cpp">
       <Filter>src\map</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\utility\FlashTint.cpp">
+    <ClCompile Include="..\Classes\utility\Colour.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utility\Misc.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,9 +104,6 @@
     <ClInclude Include="..\Classes\entities\Player.h">
       <Filter>src\entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\utility\Misc.h">
-      <Filter>src\utility</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Declares.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -116,7 +116,10 @@
     <ClInclude Include="..\Classes\map\TurnControl.h">
       <Filter>src\map</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\utility\FlashTint.h">
+    <ClInclude Include="..\Classes\utility\Colour.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utility\Misc.h">
       <Filter>src\utility</Filter>
     </ClInclude>
   </ItemGroup>

@@ -155,8 +155,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\map\TurnControl.cpp" />
     <ClCompile Include="..\Classes\SceneInit.cpp" />
     <ClCompile Include="..\Classes\StateManager.cpp" />
-    <ClCompile Include="..\Classes\utility\FlashTint.cpp" />
+    <ClCompile Include="..\Classes\utility\Colour.cpp" />
     <ClCompile Include="..\Classes\utility\Logger.cpp" />
+    <ClCompile Include="..\Classes\utility\Misc.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +173,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\map\TurnControl.h" />
     <ClInclude Include="..\Classes\SceneInit.h" />
     <ClInclude Include="..\Classes\StateManager.h" />
-    <ClInclude Include="..\Classes\utility\FlashTint.h" />
+    <ClInclude Include="..\Classes\utility\Colour.h" />
     <ClInclude Include="..\Classes\utility\Logger.h" />
     <ClInclude Include="..\Classes\utility\Misc.h" />
     <ClInclude Include="main.h" />

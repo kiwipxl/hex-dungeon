@@ -38,4 +38,14 @@ namespace utility {
 			if (flash_timer >= 1) flashing = false;
 		}
 	}
+
+	cc::Color3B interp_hue(float i) {
+		int i7 = (int)(i * 6);
+		float f7 = fmod(i * 6, 1.0f);
+
+		return cc::Color3B(
+			(IS_BIT(0x63, i7) + ((IS_BIT(0x63, i7 + 1) - IS_BIT(0x63, i7)) * f7)) * 255,
+			(IS_BIT(0x38, i7) + ((IS_BIT(0x38, i7 + 1) - IS_BIT(0x38, i7)) * f7)) * 255,
+			(IS_BIT(0x0E, i7) + ((IS_BIT(0x0E, i7 + 1) - IS_BIT(0x0E, i7)) * f7)) * 255);
+	}
 };

@@ -12,6 +12,7 @@
 #include "input/MouseInput.h"
 
 #include "utility/Logger.h"
+#include "utility/Misc.h"
 
 namespace root {
 
@@ -85,6 +86,7 @@ namespace root {
 			map::update_turns();
 			entities::player->update();
 			entities::update_enemies();
+			utility::update_misc();
 
 			break;
 		}
