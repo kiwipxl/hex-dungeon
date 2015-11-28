@@ -20,10 +20,10 @@ namespace entities {
 		void update();
 
 	private:
-		grid::GridNode* current_node;
+		map::GridNode* current_node;
 		cc::Vec2 dest;
 		
-		void walk_to(grid::GridNode* node);
+		void walk_to(map::GridNode* node);
 	};
 
 	extern Enemy* create_enemy();

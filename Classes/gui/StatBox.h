@@ -11,11 +11,19 @@ namespace gui {
 	class StatBox {
 
 	public:
-		cc::Sprite* box;
-		cc::Label* dmg_text;
-		cc::Label* hp_text;
+		float hp;
+		float max_hp;
+		float dmg;
+		float max_dmg;
 
-		StatBox();
+		cc::Sprite* box;
+		cc::Label* hp_text;
+		cc::Label* dmg_text;
+
+		StatBox(float _max_hp, float _max_dmg);
+
+		void set_hp(float _hp);
+		void set_dmg(float _dmg);
 	};
 };
 

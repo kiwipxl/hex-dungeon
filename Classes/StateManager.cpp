@@ -5,7 +5,8 @@
 #include "Assets.h"
 #include "entities/Enemy.h"
 #include "entities/Player.h"
-#include "Grid.h"
+#include "map/Grid.h"
+#include "map/TurnControl.h"
 
 #include "input/KeyboardInput.h"
 #include "input/MouseInput.h"
@@ -25,7 +26,8 @@ namespace root {
 		switch (state) {
 		case STATE_GAME:
 			assets::init();
-			grid::init();
+			map::init_grid();
+			map::init_turns();
 			entities::init_player();
 
 			break;
@@ -79,8 +81,9 @@ namespace root {
 
 		switch (state) {
 		case STATE_GAME:
-			grid::update();
-			entities::update_player();
+			map::update_grid();
+			map::update_turns();
+			entities::player->update();
 			entities::update_enemies();
 
 			break;

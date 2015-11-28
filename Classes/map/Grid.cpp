@@ -8,7 +8,7 @@
 #include "utility/Logger.h"
 #include "utility/Misc.h"
 
-namespace grid {
+namespace map {
 
 	using namespace cocos2d;
 
@@ -22,7 +22,7 @@ namespace grid {
 	Node* node_container;
 	GridNode* last_clicked_node;
 
-	void init() {
+	void init_grid() {
 		node_container = Node::create();
 		root::scene->addChild(node_container, 0);
 
@@ -82,10 +82,10 @@ namespace grid {
 		int gx = start_node->get_grid_x() + offsetx;
 		int gy = start_node->get_grid_y() + offsety;
 
-		return grid::get_node(gx - ((gy % 2) * needs_xoffset), gy);
+		return get_node(gx - ((gy % 2) * needs_xoffset), gy);
 	}
 
-	void update() {
+	void update_grid() {
 		Color3B colour = utility::interp_hue(fmod(root::time_since_startup / 20.0f, 1.0f));
 		colour.r = MIN(colour.r + 140, 255);
 		colour.g = MIN(colour.g + 140, 255);
@@ -99,15 +99,13 @@ namespace grid {
 
 /* ================================================================= */
 
-void grid::GridNode::set_type(grid::GridNodeType _type) {
-	using namespace grid;
-
+void map::GridNode::set_type(map::GridNodeType _type) {
 	type = _type;
 	update_texture();
 }
 
-void grid::GridNode::update_texture() {
-	using namespace grid;
+void map::GridNode::update_texture() {
+	using namespace map;
 
 	auto tex = get_node_texture(type);
 	sprite->setTexture(tex);

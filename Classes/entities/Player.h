@@ -9,11 +9,29 @@ namespace cc = cocos2d;
 
 namespace entities {
 
-	extern cc::Sprite* sprite;
-	extern gui::StatBox* stat_box;
+	class Player {
+
+	public:
+		cc::Sprite* sprite;
+		gui::StatBox* stat_box;
+
+		Player();
+
+		void update();
+
+	private:
+		map::GridNode* current_node;
+		cc::Vec2 dest;
+		std::vector<map::GridNode*> neighbours;
+
+		void select_neighbours(map::GridNode* start_node);
+		void deselect_neighbours();
+		void walk_to(map::GridNode* node);
+	};
+
+	extern Player* player;
 
 	extern void init_player();
-	extern void update_player();
 };
 
 #endif

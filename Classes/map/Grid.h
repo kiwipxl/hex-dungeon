@@ -8,7 +8,7 @@
 
 namespace cc = cocos2d;
 
-namespace grid {
+namespace map {
 
 	enum GridNodeType {
 
@@ -63,8 +63,8 @@ namespace grid {
 
 	extern cc::Node* node_container;
 
-	extern void init();
-	extern void update();
+	extern void init_grid();
+	extern void update_grid();
 
 	extern cc::Texture2D* get_node_texture(GridNodeType type);
 	extern GridNode* get_node(int x, int y);

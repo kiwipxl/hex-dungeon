@@ -11,7 +11,7 @@ namespace entities {
 	class Enemy;
 }
 
-namespace grid {
+namespace map {
 
 	class GridNode;
 }

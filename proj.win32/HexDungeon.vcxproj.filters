@@ -22,6 +22,9 @@
     <Filter Include="src\gui">
       <UniqueIdentifier>{9e38a647-b5dd-433c-a8e1-e3e37cd28631}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\map">
+      <UniqueIdentifier>{c8591df6-7698-469b-8055-b075f6d803e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,11 +57,14 @@
     <ClCompile Include="..\Classes\entities\Player.cpp">
       <Filter>src\entities</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Grid.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\gui\StatBox.cpp">
       <Filter>src\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\map\Grid.cpp">
+      <Filter>src\map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\map\TurnControl.cpp">
+      <Filter>src\map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,9 +72,6 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Grid.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Assets.h">
@@ -103,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\gui\StatBox.h">
       <Filter>src\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\map\Grid.h">
+      <Filter>src\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\map\TurnControl.h">
+      <Filter>src\map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

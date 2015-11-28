@@ -1,11 +1,11 @@
 #include "Enemy.h"
 
 #include "Assets.h"
-#include "Grid.h"
+#include "gui/StatBox.h"
+#include "input/MouseInput.h"
+#include "map/Grid.h"
 #include "StateManager.h"
 #include "utility/Logger.h"
-#include "input/MouseInput.h"
-#include "gui/StatBox.h"
 
 using namespace cocos2d;
 
@@ -22,9 +22,9 @@ namespace entities {
 		sprite->setColor(Color3B(255, 120, 120));
 		root::scene->addChild(sprite);
 
-		stat_box = new gui::StatBox();
+		stat_box = new gui::StatBox(8 + (rand() % 4), 2 + (rand() % 7));
 
-		current_node = grid::get_node((grid::grid_width / 2) + 4, grid::grid_height / 2);
+		current_node = map::get_node((map::grid_width / 2) + 4, map::grid_height / 2);
 		walk_to(current_node);
 	}
 
@@ -35,13 +35,13 @@ namespace entities {
 		stat_box->box->setPosition(sprite->getPositionX(), sprite->getPositionY() + 64.0f);
 	}
 
-	void Enemy::walk_to(grid::GridNode* node) {
-		current_node->set_type(grid::GRID_NODE_TYPE_FLOOR);
+	void Enemy::walk_to(map::GridNode* node) {
+		current_node->set_type(map::GRID_NODE_TYPE_FLOOR);
 
-		dest.x = node->get_world_x() + (grid::HEX_SIZE - sprite->getContentSize().width) / 2;
-		dest.y = node->get_world_y() + (grid::HEX_SIZE * .35f);
+		dest.x = node->get_world_x() + (map::HEX_SIZE - sprite->getContentSize().width) / 2;
+		dest.y = node->get_world_y() + (map::HEX_SIZE * .35f);
 		
-		node->set_type(grid::GRID_NODE_TYPE_ENEMY_FLOOR);
+		node->set_type(map::GRID_NODE_TYPE_ENEMY_FLOOR);
 	}
 
 	/* ================================================================= */
