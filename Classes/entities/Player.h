@@ -18,6 +18,7 @@ namespace entities {
 		Player();
 
 		void update();
+		void on_node_clicked(map::GridNode* node);
 
 	private:
 		map::GridNode* current_node;

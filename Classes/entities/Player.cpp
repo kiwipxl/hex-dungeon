@@ -33,7 +33,7 @@ namespace entities {
 
 		stat_box = new gui::StatBox(25, 4);
 
-		current_node = map::get_node(map::grid_width / 2, map::grid_height / 2);
+		current_node = map::get_node(0, 0);
 		walk_to(current_node);
 	}
 
@@ -42,26 +42,17 @@ namespace entities {
 		sprite->setPositionY(sprite->getPositionY() + (dest.y - sprite->getPositionY()) * .25f);
 		
 		stat_box->box->setPosition(sprite->getPositionX(), sprite->getPositionY() + 64.0f);
+	}
+	
+	void Player::on_node_clicked(map::GridNode* node) {
+		for (map::GridNode* neighbour_node : neighbours) {
+			if (node == neighbour_node) {
+				deselect_neighbours();
 
-		if (input::get_mouse_button_pressed(0)) {
-			Vec2 mpos = input::get_mouse_pos();
-			mpos.x += map::camera->getPositionX();
-			mpos.y += map::camera->getPositionY();
-			mpos.x -= root::scene_size.width / 2;
-			mpos.y -= root::scene_size.height / 2;
+				current_node = node;
+				walk_to(node);
 
-			for (map::GridNode* node : neighbours) {
-				float dist = sqrt(pow((node->get_world_x() + (map::HEX_WORLD_WIDTH * .5f)) - mpos.x, 2) + 
-								  pow((node->get_world_y() + (map::HEX_WORLD_HEIGHT * .5f)) - mpos.y, 2));
-
-				if (dist <= map::HEX_WORLD_WIDTH * .7f) {
-					deselect_neighbours();
-
-					current_node = node;
-					walk_to(node);
-
-					break;
-				}
+				break;
 			}
 		}
 	}

@@ -24,6 +24,7 @@ namespace map {
 
 	void init_grid() {
 		node_container = Node::create();
+		node_container->setAnchorPoint(Vec2(0, 0));
 		root::scene->addChild(node_container, 0);
 
 		grid_width = root::scene_size.width / HEX_WORLD_WIDTH;
