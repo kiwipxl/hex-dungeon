@@ -21,6 +21,7 @@ namespace entities {
 
 		void update();
 		void on_node_clicked(map::GridNode* node);
+		void refresh_neighbours();
 
 	private:
 		cc::Vec2 dest;

@@ -67,8 +67,6 @@ namespace entities {
 						}
 					}
 				}else {
-					deselect_neighbours();
-
 					walk_to(node);
 				}
 
@@ -97,7 +95,11 @@ namespace entities {
 			}
 		}
 		neighbours.clear();
+	}
 
+	void Player::refresh_neighbours() {
+		deselect_neighbours();
+		select_neighbours(current_node);
 	}
 
 	void Player::walk_to(map::GridNode* node) {
@@ -110,7 +112,7 @@ namespace entities {
 		dest.x = node->get_world_x() + (map::HEX_SIZE - sprite->getContentSize().width) / 2;
 		dest.y = node->get_world_y() + (map::HEX_SIZE * .35f);
 
-		select_neighbours(current_node);
 		current_node->set_type(map::GRID_NODE_TYPE_PLAYER_FLOOR);
+		refresh_neighbours();
 	}
 };

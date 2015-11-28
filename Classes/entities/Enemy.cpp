@@ -2,6 +2,8 @@
 
 #include "Assets.h"
 
+#include "entities/Player.h"
+
 #include "gui/StatBox.h"
 
 #include "input/MouseInput.h"
@@ -105,5 +107,6 @@ namespace entities {
 				--n;
 			}
 		}
+		entities::player->refresh_neighbours();
 	}
 };
