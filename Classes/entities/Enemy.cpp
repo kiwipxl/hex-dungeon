@@ -28,6 +28,8 @@ namespace entities {
 	}
 
 	void Enemy::update() {
+		colour_flash.update();
+
 		sprite->setPositionX(sprite->getPositionX() + (dest.x - sprite->getPositionX()) * .25f);
 		sprite->setPositionY(sprite->getPositionY() + (dest.y - sprite->getPositionY()) * .25f);
 
@@ -50,6 +52,8 @@ namespace entities {
 	void Enemy::deal_dmg(float dmg) {
 		stat_box->hp -= dmg;
 		stat_box->set_hp(stat_box->hp);
+
+		colour_flash.start(sprite, 1, .5f, 2, 0, 0);
 	}
 
 	/* ================================================================= */

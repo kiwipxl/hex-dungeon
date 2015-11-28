@@ -4,6 +4,7 @@
 #include <2d/CCSprite.h>
 
 #include "Declares.h"
+#include "utility/ColourFlash.h"
 
 namespace cc = cocos2d;
 
@@ -24,7 +25,9 @@ namespace entities {
 	private:
 		cc::Vec2 dest;
 		std::vector<map::GridNode*> neighbours;
+		utility::ColourFlash colour_flash;
 
+		void take_dmg(float dmg);
 		void select_neighbours(map::GridNode* start_node);
 		void deselect_neighbours();
 		void walk_to(map::GridNode* node);

@@ -4,6 +4,7 @@
 #include <2d/CCSprite.h>
 
 #include "Declares.h"
+#include "utility/ColourFlash.h"
 
 namespace cc = cocos2d;
 
@@ -23,7 +24,8 @@ namespace entities {
 
 	private:
 		cc::Vec2 dest;
-		
+		utility::ColourFlash colour_flash;
+
 		void walk_to(map::GridNode* node);
 	};
 	

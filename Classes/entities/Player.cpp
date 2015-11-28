@@ -38,12 +38,21 @@ namespace entities {
 	}
 
 	void Player::update() {
+		colour_flash.update();
+
 		sprite->setPositionX(sprite->getPositionX() + (dest.x - sprite->getPositionX()) * .25f);
 		sprite->setPositionY(sprite->getPositionY() + (dest.y - sprite->getPositionY()) * .25f);
 		
 		stat_box->box->setPosition(sprite->getPositionX(), sprite->getPositionY() + 64.0f);
 	}
-	
+
+	void Player::take_dmg(float dmg) {
+		stat_box->hp -= dmg;
+		stat_box->set_hp(stat_box->hp);
+
+		colour_flash.start(sprite, 1, .5f, 1, 0, 0);
+	}
+
 	void Player::on_node_clicked(map::GridNode* node) {
 		for (map::GridNode* neighbour_node : neighbours) {
 			if (node == neighbour_node) {

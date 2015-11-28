@@ -66,6 +66,9 @@
     <ClCompile Include="..\Classes\map\TurnControl.cpp">
       <Filter>src\map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\utility\FlashTint.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\map\TurnControl.h">
       <Filter>src\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utility\FlashTint.h">
+      <Filter>src\utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
