@@ -12,6 +12,8 @@ namespace map {
 
 	using namespace cocos2d;
 
+	//private
+
 	//public
 	std::vector<GridNode*> grid_vec;
 	int grid_width;
@@ -59,16 +61,19 @@ namespace map {
 		
 		entities::Enemy* enemy = entities::create_enemy();
 	}
+	
+	std::unique_ptr<NodeTypeProps> get_type_props(GridNodeType type) {
+		std::unique_ptr<NodeTypeProps> props(new NodeTypeProps());
 
-	Texture2D* get_node_texture(GridNodeType type) {
 		switch (type) {
-		case GRID_NODE_TYPE_FLOOR:				return assets::tex_hex_floor;
-		case GRID_NODE_TYPE_WALKABLE_FLOOR:		return assets::tex_hex_walkable_floor;
-		case GRID_NODE_TYPE_PLAYER_FLOOR:		return assets::tex_hex_player_floor;
-		case GRID_NODE_TYPE_WALL:				return assets::tex_hex_wall;
-		case GRID_NODE_TYPE_ENEMY_FLOOR:		return assets::tex_hex_enemy_floor;
+		case GRID_NODE_TYPE_FLOOR:				props->set(true, assets::tex_hex_floor); break;
+		case GRID_NODE_TYPE_WALKABLE_FLOOR:		props->set(true, assets::tex_hex_walkable_floor); break;
+		case GRID_NODE_TYPE_PLAYER_FLOOR:		props->set(false, assets::tex_hex_player_floor); break;
+		case GRID_NODE_TYPE_WALL:				props->set(false, assets::tex_hex_wall); break;
+		case GRID_NODE_TYPE_ENEMY_FLOOR:		props->set(false, assets::tex_hex_enemy_floor); break;
 		}
-		return NULL;
+
+		return props;
 	}
 	
 	GridNode* get_node(int x, int y) {
@@ -96,20 +101,23 @@ namespace map {
 			n->setColor(colour);
 		}
 	}
-}
 
-/* ================================================================= */
+	/* ================================================================= */
 
-void map::GridNode::set_type(map::GridNodeType _type) {
-	type = _type;
-	update_texture();
-}
+	void GridNode::set_type(map::GridNodeType _type) {
+		type = _type;
+		update_texture();
+	}
 
-void map::GridNode::update_texture() {
-	using namespace map;
+	void GridNode::update_texture() {
+		std::unique_ptr<NodeTypeProps> props = get_type_props(type);
+		walkable = props->walkable;
 
-	auto tex = get_node_texture(type);
-	sprite->setTexture(tex);
-	sprite->setTextureRect(Rect(0, 0, sprite->getTexture()->getPixelsWide(), sprite->getTexture()->getPixelsHigh()));
-	sprite->setScale(HEX_SIZE / tex->getPixelsWide(), HEX_SIZE / tex->getPixelsHigh());
+		auto tex = props->tex;
+
+		sprite->setTexture(tex);
+		sprite->setTextureRect(Rect(0, 0, tex->getPixelsWide(), tex->getPixelsHigh()));
+
+		sprite->setScale(HEX_SIZE / tex->getPixelsWide(), HEX_SIZE / tex->getPixelsHigh());
+	}
 }

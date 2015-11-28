@@ -14,6 +14,7 @@ namespace entities {
 	public:
 		cc::Sprite* sprite;
 		gui::StatBox* stat_box;
+		map::GridNode* current_node = NULL;
 
 		Player();
 
@@ -21,7 +22,6 @@ namespace entities {
 		void on_node_clicked(map::GridNode* node);
 
 	private:
-		map::GridNode* current_node;
 		cc::Vec2 dest;
 		std::vector<map::GridNode*> neighbours;
 

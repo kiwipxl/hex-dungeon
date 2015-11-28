@@ -12,9 +12,9 @@ using namespace cocos2d;
 namespace entities {
 
 	//private
-	std::vector<Enemy*> enemies;
 
 	//public
+	std::vector<Enemy*> enemies;
 
 	Enemy::Enemy() {
 		sprite = Sprite::createWithTexture(assets::tex_char_skeleton);
@@ -24,8 +24,7 @@ namespace entities {
 
 		stat_box = new gui::StatBox(8 + (rand() % 4), 2 + (rand() % 7));
 
-		current_node = map::get_node((map::grid_width / 2) + 4, map::grid_height / 2);
-		walk_to(current_node);
+		walk_to(map::get_node((map::grid_width / 2) + 4, map::grid_height / 2));
 	}
 
 	void Enemy::update() {
@@ -36,12 +35,21 @@ namespace entities {
 	}
 
 	void Enemy::walk_to(map::GridNode* node) {
-		current_node->set_type(map::GRID_NODE_TYPE_FLOOR);
+		if (current_node) {
+			current_node->set_type(map::GRID_NODE_TYPE_FLOOR);
+		}
+
+		current_node = node;
 
 		dest.x = node->get_world_x() + (map::HEX_SIZE - sprite->getContentSize().width) / 2;
 		dest.y = node->get_world_y() + (map::HEX_SIZE * .35f);
-		
+
 		node->set_type(map::GRID_NODE_TYPE_ENEMY_FLOOR);
+	}
+
+	void Enemy::deal_dmg(float dmg) {
+		stat_box->hp -= dmg;
+		stat_box->set_hp(stat_box->hp);
 	}
 
 	/* ================================================================= */

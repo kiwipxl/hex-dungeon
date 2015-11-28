@@ -5,6 +5,8 @@
 
 #include "Assets.h"
 #include "entities/Player.h"
+#include "entities/Enemy.h"
+#include "gui/StatBox.h"
 #include "input/MouseInput.h"
 #include "map/Grid.h"
 #include "StateManager.h"
@@ -22,7 +24,7 @@ namespace map {
 	void init_turns() {
 		Camera::getDefaultCamera()->setVisible(false);
 
-		camera = Camera::createPerspective(60, (float)root::scene_size.width / root::scene_size.height), 1, 1000.0f);
+		camera = Camera::createPerspective(60, (float)root::scene_size.width / root::scene_size.height, 1, 1000.0f);
 		camera->setPositionZ(Director::getInstance()->getZEye());
 
 		camera->setCameraFlag(CameraFlag::DEFAULT);

@@ -20,6 +20,17 @@ namespace map {
 		GRID_NODE_TYPE_WALL
 	};
 
+	struct NodeTypeProps {
+
+		bool walkable;
+		cc::Texture2D* tex;
+
+		void set(bool _walkable, cc::Texture2D* _tex) {
+			walkable = _walkable;
+			tex = _tex;
+		}
+	};
+
 	class GridNode {
 
 	public:
@@ -28,6 +39,8 @@ namespace map {
 			world_x(world_x_), world_y(world_y_),
 			sprite(sprite_), type(type_)
 		{ }
+
+		bool walkable = true;
 
 		void set_type(GridNodeType _type);
 		void update_texture();
@@ -65,8 +78,8 @@ namespace map {
 
 	extern void init_grid();
 	extern void update_grid();
-
-	extern cc::Texture2D* get_node_texture(GridNodeType type);
+	
+	extern std::unique_ptr<NodeTypeProps> get_type_props(GridNodeType type);
 	extern GridNode* get_node(int x, int y);
 	GridNode* get_neighbour(GridNode* start_node, int offsetx, int offsety);
 }

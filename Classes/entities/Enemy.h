@@ -16,15 +16,18 @@ namespace entities {
 
 		cc::Sprite* sprite;
 		gui::StatBox* stat_box;
+		map::GridNode* current_node = NULL;
 
 		void update();
+		void deal_dmg(float dmg);
 
 	private:
-		map::GridNode* current_node;
 		cc::Vec2 dest;
 		
 		void walk_to(map::GridNode* node);
 	};
+	
+	extern std::vector<Enemy*> enemies;
 
 	extern Enemy* create_enemy();
 	extern void update_enemies();
