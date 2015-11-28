@@ -5,13 +5,15 @@
 
 namespace cc = cocos2d;
 
-namespace player {
+namespace entities {
+	
+	class StatBox;
 	
 	extern cc::Sprite* sprite;
+	extern StatBox* stat_box;
 
-	extern void init();
-	extern void update();
-	extern void highlight_neighbours();
+	extern void init_player();
+	extern void update_player();
 };
 
 #endif

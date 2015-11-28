@@ -9,8 +9,9 @@
 #include "StateManager.h"
 #include "utility/Logger.h"
 #include "input/MouseInput.h"
+#include "entities/StatBox.h"
 
-namespace player {
+namespace entities {
 
 	using namespace cocos2d;
 
@@ -19,9 +20,6 @@ namespace player {
 	Vec2 dest;
 
 	Camera* camera;
-	Sprite* stats_box;
-	Label* dmg_stat_text;
-	Label* hp_stat_text;
 
 	std::vector<GridNode*> neighbours;
 	int hex_neighbours[] { 0, -1, 1, -1, -1, 0, 1, 0, 0, 1, 1, 1 };
@@ -55,25 +53,14 @@ namespace player {
 
 	//public
 	Sprite* sprite;
+	StatBox* stat_box;
 
-	void init() {
+	void init_player() {
 		sprite = Sprite::createWithTexture(assets::tex_char_warrior);
 		sprite->setAnchorPoint(Vec2(0, 0));
 		root::scene->addChild(sprite);
 
-		stats_box = Sprite::createWithTexture(assets::tex_char_stats);
-		stats_box->setAnchorPoint(Vec2(0, 0));
-		root::scene->addChild(stats_box);
-
-		hp_stat_text = Label::create("4", "fonts/Marker Felt.ttf", 12);
-		hp_stat_text->setAnchorPoint(Vec2(0, 0));
-		hp_stat_text->setPosition(20, 2);
-		stats_box->addChild(hp_stat_text);
-
-		dmg_stat_text = Label::create("8", "fonts/Marker Felt.ttf", 12);
-		dmg_stat_text->setAnchorPoint(Vec2(0, 0));
-		dmg_stat_text->setPosition(57, 2);
-		stats_box->addChild(dmg_stat_text);
+		stat_box = new StatBox();
 
 		current_node = grid::get_node(grid::grid_width / 2, grid::grid_height / 2);
 		walk_to(current_node);
@@ -88,8 +75,7 @@ namespace player {
 		root::scene->addChild(camera);
 	}
 
-	void update() {
-
+	void update_player() {
 		float camx = camera->getPositionX();
 		float camy = camera->getPositionY();
 		if (abs(sprite->getPositionX() - camx) <= 4.0f) camx = sprite->getPositionX();
@@ -101,8 +87,8 @@ namespace player {
 
 		sprite->setPositionX(sprite->getPositionX() + (dest.x - sprite->getPositionX()) * .25f);
 		sprite->setPositionY(sprite->getPositionY() + (dest.y - sprite->getPositionY()) * .25f);
-
-		stats_box->setPosition(sprite->getPositionX(), sprite->getPositionY() + 64.0f);
+		
+		stat_box->box->setPosition(sprite->getPositionX(), sprite->getPositionY() + 64.0f);
 
 		if (input::get_mouse_button_pressed(0)) {
 			Vec2 mpos = input::get_mouse_pos();

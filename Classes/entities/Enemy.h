@@ -7,7 +7,9 @@ class GridNode;
 
 namespace cc = cocos2d;
 
-namespace enemy {
+namespace entities {
+
+	class StatBox;
 
 	class Enemy {
 
@@ -15,8 +17,8 @@ namespace enemy {
 		Enemy();
 
 		cc::Sprite* sprite;
+		StatBox* stat_box;
 
-		void init();
 		void update();
 
 	private:
@@ -27,7 +29,7 @@ namespace enemy {
 	};
 
 	extern Enemy* create_enemy();
-	extern void update();
+	extern void update_enemies();
 };
 
 #endif

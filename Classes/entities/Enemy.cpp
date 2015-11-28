@@ -5,10 +5,11 @@
 #include "StateManager.h"
 #include "utility/Logger.h"
 #include "input/MouseInput.h"
+#include "entities/StatBox.h"
 
 using namespace cocos2d;
 
-namespace enemy {
+namespace entities {
 
 	//private
 	std::vector<Enemy*> enemies;
@@ -21,6 +22,8 @@ namespace enemy {
 		sprite->setColor(Color3B(255, 120, 120));
 		root::scene->addChild(sprite);
 
+		stat_box = new StatBox();
+
 		current_node = grid::get_node((grid::grid_width / 2) + 4, grid::grid_height / 2);
 		walk_to(current_node);
 	}
@@ -28,6 +31,8 @@ namespace enemy {
 	void Enemy::update() {
 		sprite->setPositionX(sprite->getPositionX() + (dest.x - sprite->getPositionX()) * .25f);
 		sprite->setPositionY(sprite->getPositionY() + (dest.y - sprite->getPositionY()) * .25f);
+
+		stat_box->box->setPosition(sprite->getPositionX(), sprite->getPositionY() + 64.0f);
 	}
 
 	void Enemy::walk_to(GridNode* node) {
@@ -48,7 +53,7 @@ namespace enemy {
 		return enemy;
 	}
 
-	void update() {
+	void update_enemies() {
 		for (int n = 0; n < enemies.size(); ++n) {
 			enemies[n]->update();
 		}

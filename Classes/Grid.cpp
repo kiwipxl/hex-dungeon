@@ -55,8 +55,8 @@ namespace grid {
 				grid_vec.push_back(node);
 			}
 		}
-
-		enemy::Enemy* enemy = enemy::create_enemy();
+		
+		entities::Enemy* enemy = entities::create_enemy();
 	}
 
 	Texture2D* get_node_texture(GridNodeType type) {

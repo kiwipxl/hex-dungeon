@@ -54,6 +54,9 @@
     <ClCompile Include="..\Classes\entities\Player.cpp">
       <Filter>src\entities</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\entities\StatBox.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\utility\Misc.h">
       <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\entities\StatBox.h">
+      <Filter>src\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,7 @@ namespace root {
 		case STATE_GAME:
 			assets::init();
 			grid::init();
-			player::init();
+			entities::init_player();
 
 			break;
 		}
@@ -79,9 +79,9 @@ namespace root {
 
 		switch (state) {
 		case STATE_GAME:
-			player::update();
 			grid::update();
-			enemy::update();
+			entities::update_player();
+			entities::update_enemies();
 
 			break;
 		}
