@@ -20,11 +20,15 @@ namespace entities {
 		map::GridNode* current_node = NULL;
 
 		void update();
+		void remove();
 		void deal_dmg(float dmg);
+
+		bool is_removal_scheduled() { return removal_scheduled; }
 
 	private:
 		cc::Vec2 dest;
 		utility::ColourFlash colour_flash;
+		bool removal_scheduled = false;
 
 		void walk_to(map::GridNode* node);
 	};

@@ -21,6 +21,7 @@ namespace gui {
 		cc::Label* dmg_text;
 
 		StatBox(float _max_hp, float _max_dmg);
+		void remove();
 
 		void set_hp(float _hp);
 		void set_dmg(float _dmg);

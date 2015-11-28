@@ -42,6 +42,15 @@ namespace entities {
 		}
 	}
 
+	void Enemy::remove() {
+		stat_box->remove();
+		root::scene->removeChild(sprite);
+
+		if (current_node) {
+			current_node->set_type(map::GRID_NODE_TYPE_FLOOR);
+		}
+	}
+
 	void Enemy::update() {
 		colour_flash.update();
 
@@ -70,6 +79,10 @@ namespace entities {
 
 		colour_flash.start(sprite, 1, .25f, 2, 0, 0);
 		utility::shake_screen(.2f, 7.0f);
+
+		if (stat_box->hp <= 0) {
+			removal_scheduled = true;
+		}
 	}
 
 	/* ================================================================= */
@@ -84,6 +97,13 @@ namespace entities {
 	void update_enemies() {
 		for (int n = 0; n < enemies.size(); ++n) {
 			enemies[n]->update();
+
+			if (enemies[n]->is_removal_scheduled()) {
+				enemies[n]->remove();
+
+				enemies.erase(enemies.begin() + n);
+				--n;
+			}
 		}
 	}
 };

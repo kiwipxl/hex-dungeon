@@ -36,6 +36,10 @@ namespace gui {
 		set_dmg(max_dmg);
 	}
 
+	void StatBox::remove() {
+		root::scene->removeChild(box);
+	}
+
 	void StatBox::set_hp(float _hp) {
 		hp = _hp;
 		hp_text->setString(sstream_cstr(hp));
