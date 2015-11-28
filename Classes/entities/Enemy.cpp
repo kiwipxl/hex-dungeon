@@ -30,7 +30,16 @@ namespace entities {
 
 		stat_box = new gui::StatBox(8 + (rand() % 4), 2 + (rand() % 7));
 
-		walk_to(map::get_node((map::grid_width / 2) + 4, map::grid_height / 2));
+		while (true) {
+			int gridx = rand() % map::grid_width;
+			int gridy = rand() % map::grid_height;
+
+			map::GridNode* node = map::get_node(gridx, gridy);
+			if (node && node->walkable) {
+				walk_to(node);
+				break;
+			}
+		}
 	}
 
 	void Enemy::update() {
@@ -59,7 +68,7 @@ namespace entities {
 		stat_box->hp -= dmg;
 		stat_box->set_hp(stat_box->hp);
 
-		colour_flash.start(sprite, 1, .5f, 2, 0, 0);
+		colour_flash.start(sprite, 1, .25f, 2, 0, 0);
 		utility::shake_screen(.2f, 7.0f);
 	}
 

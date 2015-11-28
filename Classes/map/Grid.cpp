@@ -58,8 +58,10 @@ namespace map {
 				grid_vec.push_back(node);
 			}
 		}
-		
-		entities::Enemy* enemy = entities::create_enemy();
+
+		for (int n = 0; n < 10; ++n) {
+			entities::Enemy* enemy = entities::create_enemy();
+		}
 	}
 	
 	std::unique_ptr<NodeTypeProps> get_type_props(GridNodeType type) {
