@@ -99,14 +99,14 @@ namespace grid {
 
 /* ================================================================= */
 
-void GridNode::set_type(GridNodeType _type) {
+void grid::GridNode::set_type(grid::GridNodeType _type) {
 	using namespace grid;
 
 	type = _type;
 	update_texture();
 }
 
-void GridNode::update_texture() {
+void grid::GridNode::update_texture() {
 	using namespace grid;
 
 	auto tex = get_node_texture(type);

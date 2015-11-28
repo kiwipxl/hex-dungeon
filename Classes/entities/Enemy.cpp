@@ -5,7 +5,7 @@
 #include "StateManager.h"
 #include "utility/Logger.h"
 #include "input/MouseInput.h"
-#include "entities/StatBox.h"
+#include "gui/StatBox.h"
 
 using namespace cocos2d;
 
@@ -22,7 +22,7 @@ namespace entities {
 		sprite->setColor(Color3B(255, 120, 120));
 		root::scene->addChild(sprite);
 
-		stat_box = new StatBox();
+		stat_box = new gui::StatBox();
 
 		current_node = grid::get_node((grid::grid_width / 2) + 4, grid::grid_height / 2);
 		walk_to(current_node);
@@ -35,13 +35,13 @@ namespace entities {
 		stat_box->box->setPosition(sprite->getPositionX(), sprite->getPositionY() + 64.0f);
 	}
 
-	void Enemy::walk_to(GridNode* node) {
-		current_node->set_type(GRID_NODE_TYPE_FLOOR);
+	void Enemy::walk_to(grid::GridNode* node) {
+		current_node->set_type(grid::GRID_NODE_TYPE_FLOOR);
 
 		dest.x = node->get_world_x() + (grid::HEX_SIZE - sprite->getContentSize().width) / 2;
 		dest.y = node->get_world_y() + (grid::HEX_SIZE * .35f);
 		
-		node->set_type(GRID_NODE_TYPE_ENEMY_FLOOR);
+		node->set_type(grid::GRID_NODE_TYPE_ENEMY_FLOOR);
 	}
 
 	/* ================================================================= */

@@ -3,13 +3,11 @@
 
 #include <2d/CCSprite.h>
 
-class GridNode;
+#include "Declares.h"
 
 namespace cc = cocos2d;
 
 namespace entities {
-
-	class StatBox;
 
 	class Enemy {
 
@@ -17,15 +15,15 @@ namespace entities {
 		Enemy();
 
 		cc::Sprite* sprite;
-		StatBox* stat_box;
+		gui::StatBox* stat_box;
 
 		void update();
 
 	private:
-		GridNode* current_node;
+		grid::GridNode* current_node;
 		cc::Vec2 dest;
 		
-		void walk_to(GridNode* node);
+		void walk_to(grid::GridNode* node);
 	};
 
 	extern Enemy* create_enemy();

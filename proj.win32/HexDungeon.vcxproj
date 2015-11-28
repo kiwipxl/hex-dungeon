@@ -148,8 +148,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Assets.cpp" />
     <ClCompile Include="..\Classes\entities\Enemy.cpp" />
     <ClCompile Include="..\Classes\entities\Player.cpp" />
-    <ClCompile Include="..\Classes\entities\StatBox.cpp" />
     <ClCompile Include="..\Classes\Grid.cpp" />
+    <ClCompile Include="..\Classes\gui\StatBox.cpp" />
     <ClCompile Include="..\Classes\input\KeyboardInput.cpp" />
     <ClCompile Include="..\Classes\input\MouseInput.cpp" />
     <ClCompile Include="..\Classes\SceneInit.cpp" />
@@ -160,10 +160,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Assets.h" />
+    <ClInclude Include="..\Classes\Declares.h" />
     <ClInclude Include="..\Classes\entities\Enemy.h" />
     <ClInclude Include="..\Classes\entities\Player.h" />
-    <ClInclude Include="..\Classes\entities\StatBox.h" />
     <ClInclude Include="..\Classes\Grid.h" />
+    <ClInclude Include="..\Classes\gui\StatBox.h" />
     <ClInclude Include="..\Classes\input\KeyboardInput.h" />
     <ClInclude Include="..\Classes\input\MouseInput.h" />
     <ClInclude Include="..\Classes\SceneInit.h" />

@@ -8,47 +8,47 @@
 
 namespace cc = cocos2d;
 
-enum GridNodeType {
-
-	GRID_NODE_TYPE_NONE,
-	GRID_NODE_TYPE_FLOOR,
-	GRID_NODE_TYPE_WALKABLE_FLOOR, 
-	GRID_NODE_TYPE_PLAYER_FLOOR, 
-	GRID_NODE_TYPE_ENEMY_FLOOR, 
-	GRID_NODE_TYPE_WALL
-};
-
-class GridNode {
-
-public:
-	GridNode(int grid_x_, int grid_y_, float world_x_, float world_y_, cc::Sprite* sprite_, GridNodeType type_) :
-		grid_x(grid_x_), grid_y(grid_y_),
-		world_x(world_x_), world_y(world_y_),
-		sprite(sprite_), type(type_)
-	{ }
-
-	void set_type(GridNodeType _type);
-	void update_texture();
-
-	int get_grid_x() { return grid_x; }
-	int get_grid_y() { return grid_y; }
-	float get_world_x() { return world_x; }
-	float get_world_y() { return world_y; }
-	cc::Sprite* get_sprite() { return sprite; }
-	GridNodeType get_type() { return type; }
-
-private:
-	int grid_x;
-	int grid_y;
-	float world_x;
-	float world_y;
-
-	cc::Sprite* sprite;
-	GridNodeType type = GRID_NODE_TYPE_NONE;
-
-};
-
 namespace grid {
+
+	enum GridNodeType {
+
+		GRID_NODE_TYPE_NONE,
+		GRID_NODE_TYPE_FLOOR,
+		GRID_NODE_TYPE_WALKABLE_FLOOR,
+		GRID_NODE_TYPE_PLAYER_FLOOR,
+		GRID_NODE_TYPE_ENEMY_FLOOR,
+		GRID_NODE_TYPE_WALL
+	};
+
+	class GridNode {
+
+	public:
+		GridNode(int grid_x_, int grid_y_, float world_x_, float world_y_, cc::Sprite* sprite_, GridNodeType type_) :
+			grid_x(grid_x_), grid_y(grid_y_),
+			world_x(world_x_), world_y(world_y_),
+			sprite(sprite_), type(type_)
+		{ }
+
+		void set_type(GridNodeType _type);
+		void update_texture();
+
+		int get_grid_x() { return grid_x; }
+		int get_grid_y() { return grid_y; }
+		float get_world_x() { return world_x; }
+		float get_world_y() { return world_y; }
+		cc::Sprite* get_sprite() { return sprite; }
+		GridNodeType get_type() { return type; }
+
+	private:
+		int grid_x;
+		int grid_y;
+		float world_x;
+		float world_y;
+
+		cc::Sprite* sprite;
+		GridNodeType type = GRID_NODE_TYPE_NONE;
+
+	};
 
 	const float HEX_SIZE = 80.0f;
 	const int HEX_OFFSET = 10;

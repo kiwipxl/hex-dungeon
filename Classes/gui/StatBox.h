@@ -6,7 +6,7 @@
 
 namespace cc = cocos2d;
 
-namespace entities {
+namespace gui {
 
 	class StatBox {
 

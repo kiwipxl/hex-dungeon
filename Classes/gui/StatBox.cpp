@@ -6,7 +6,7 @@
 #include "StateManager.h"
 #include "utility/Logger.h"
 
-namespace entities {
+namespace gui {
 
 	using namespace cocos2d;
 
@@ -16,14 +16,14 @@ namespace entities {
 		box->setZOrder(1000);
 		root::scene->addChild(box);
 
-		hp_text = Label::create("4", "fonts/Marker Felt.ttf", 12);
+		hp_text = Label::create("99", "fonts/Arial.ttf", 15);
 		hp_text->setAnchorPoint(Vec2(0, 0));
-		hp_text->setPosition(20, 2);
+		hp_text->setPosition(17, 1);
 		box->addChild(hp_text);
 
-		dmg_text = Label::create("8", "fonts/Marker Felt.ttf", 12);
+		dmg_text = Label::create("99", "fonts/Arial.ttf", 15);
 		dmg_text->setAnchorPoint(Vec2(0, 0));
-		dmg_text->setPosition(57, 2);
+		dmg_text->setPosition(54, 1);
 		box->addChild(dmg_text);
 	}
 };
